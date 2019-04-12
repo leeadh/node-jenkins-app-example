@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:11.13-alpine' 
+            image 'tarampampam/node:latest' 
             args '-p 3000:3000' 
         }
     }
