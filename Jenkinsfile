@@ -5,13 +5,18 @@ pipeline {
         dockerImage = ''
     }
 
-    agent {
-        docker {
-            image 'tarampampam/node:latest' 
-            args '-p 3000:3000' 
-        }
+    agent any
+    tools{
+        nodejs "node"
     }
     stages {
+
+        stage('Git clone'){
+            steps{
+                git 'https://github.com/leeadh/node-jenkins-app-example.git'
+            }
+            
+        }
         stage('Installing Node') { 
             steps {
                 sh 'npm install' 
