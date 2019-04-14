@@ -1,12 +1,24 @@
-const express = require('express')
-const app = express()
+var express = require('express');
+var app = express();
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var PORT = 4000;
 
-app.get('/', (req, res) => res.send('Hello World!'))
+// REQUIRE MIDDLEWARE
+var instantMongoCrud = require('express-mongo-crud'); // require the module
 
-var server = app.listen(4000, () => {
-    console.log("============")
-    console.log("Listening on port " + server.address().port + "...");
-    console.log("============")
-});
 
-module.exports = server;
+
+mongoose.connect('mongodb://mongodb/user');
+
+var options = { //specify options
+    host: `localhost:${PORT}`
+}
+
+//USE AS MIDDLEWARE
+app.use(bodyParser.json()); // add body parser
+app.use(instantMongoCrud(options)); // use as middleware
+
+app.listen(PORT, ()=>{
+    console.log('started');
+})

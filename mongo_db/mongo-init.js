@@ -1,0 +1,8 @@
+db.auth('admin', 'password')
+db = db.getSiblingDB('user')
+db.users.insert({name:"Jainish", email:"janish@yahoo.com"})
+db.users.insert({name:"Adrian", email:"adrian@gmail.com"})
+db.users.insert({name:"Jonathan", email:"jonthan@gmail.com"})
+db.users.insert({name:"Jimmy", email:"jimmy@gmail.com"})
+db.users.insert({name:"Jackie", email:"jackiegmail.com"})
+db.users.insert({name:"Fiona", email:"fiona@gmail.com"})

@@ -1,9 +1,7 @@
-FROM mhart/alpine-node
-
-EXPOSE 3000
-
+FROM node:latest
 WORKDIR /app
-
+COPY package.json /app
 COPY . /app
-
+RUN npm install 
+EXPOSE 4000
 CMD ["node", "app.js"]
