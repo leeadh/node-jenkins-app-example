@@ -8,7 +8,8 @@ var PORT = 4000;
 var instantMongoCrud = require('express-mongo-crud'); // require the module
 
 
-
+//mongoose.connect('mongodb://mongodb/user');
+//mongoose.connect('mongodb://mongodb:27017/user'); --> run this if u want to run docker compose
 mongoose.connect('mongodb://mongodb/user');
 
 var options = { //specify options
