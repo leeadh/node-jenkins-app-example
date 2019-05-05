@@ -1,0 +1,62 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <% include modal %>
+    
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Add user
+    </button>
+
+    <div class="table-wrapper">
+        <table id="example">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Occupation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(user) { %>
+                    <tr>
+                        <td><%= user.name %></td>
+                        <td><%= user.username %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.occupation %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+
+
+        
+    </div>
+</main>
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+
+
+
+</html>

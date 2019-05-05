@@ -3,4 +3,4 @@
 docker-compose up --build -d mongodb
 
 === To run the mongoDB after you push latest ===
-docker build -t got:v4 . &&  docker run -d --network=mongo_db_default  --link=mongodb:mongodb -p 4000:4000 got:v4
+docker build -t got:v5 . &&  docker run -d --network=mongo_db_default  --link=mongodb:mongodb -p 4000:4000 got:v5
