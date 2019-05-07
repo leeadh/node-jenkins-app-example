@@ -18,7 +18,7 @@
                 <h4 class="modal-title">Modal Heading</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form id="subscribe-email-form">
+            <form id="user-form">
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="form-group">
@@ -64,11 +64,12 @@
         $.ajax({
             url: '/addUser',
             type: 'POST',
-            data: $('#subscribe-email-form').serialize(),
+            data: $('#user-form').serialize(),
             success: function(response){
                 if (response =="successful"){
                     alert("User has been added successfully")
                     $("#myModal").modal('hide'); 
+                    window.location.href="/";
                     
                 }
                 

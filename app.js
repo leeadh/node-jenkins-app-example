@@ -47,8 +47,7 @@ db.connect(() => {
                 db.get().collection('users').save({name:name, email:email, occupation:occupation, username:username}, {w:1},function (err, result) {
                     if (err){
                         console.log("error")
-                    }   
-                    else{
+                    } else{
                         console.log("success")
                         res.send("successful")
                     }        
@@ -59,7 +58,24 @@ db.connect(() => {
 
 
     });
-    
+
+    // delete user
+    app.post('/deleteUser', function(req, res) {
+        var email=req.body.email
+        console.log(email)
+        db.get().collection('users').deleteOne({email: email}, function(err,result){
+            if (err){
+                console.log("error")
+            }else{
+                console.log("successfully deleted user")
+                res.send ("successfully deleted user")
+
+            }
+
+        });
+
+    });
+
     app.listen(PORT, ()=>{
         console.log('started');
         console.log(db)
