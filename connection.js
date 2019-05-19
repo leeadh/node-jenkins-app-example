@@ -3,7 +3,7 @@
 // --> run this for normal docker
 //mongoose.connect('mongodb://mongodb/user'); 
 
-
+//const mongoDbUrl = 'mongodb://127.0.0.1:27017/user'; --> to test locally on laptop
 
 /*
 var mongoose = require('mongoose')
@@ -14,7 +14,8 @@ module.exports = mongoose
 */
 
 const mongoClient = require('mongodb').MongoClient;
-const mongoDbUrl = 'mongodb://127.0.0.1:27017/user';
+const mongoDbUrl = process.env.MONGODB_URL;
+//console.log(process.env.MONGODB_URL)
 let mongodb;
 
 function connect(callback){

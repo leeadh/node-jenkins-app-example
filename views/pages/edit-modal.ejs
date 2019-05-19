@@ -9,16 +9,16 @@
 
 <div class="container">
       <!-- The Modal -->
-      <div class="modal" id="myModal">
+      <div class="modal" id="editModal">
         <div class="modal-dialog">
         <div class="modal-content">
         
             <!-- Modal Header -->
             <div class="modal-header modal-header-primary">
-                <h4 class="modal-title">Add New Employee</h4>
+                <h4 class="modal-title">Edit User</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <form id="user-form">
+            <form id="update-form">
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div class="form-group">
@@ -28,7 +28,7 @@
                         
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control" readonly>
                     </div>
 
 
@@ -49,7 +49,7 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="submit" onclick="submitContactForm()">Submit</button>
+                <button type="button" class="btn btn-primary" id="submit" onclick="saveData()">Save</button>
             </div>
             
         </div>
@@ -60,14 +60,14 @@
 
 <script>
 
-    function submitContactForm(){
+    function saveData(){
         $.ajax({
-            url: '/addUser',
+            url: '/updateUser',
             type: 'POST',
-            data: $('#user-form').serialize(),
+            data: $('#update-form').serialize(),
             success: function(response){
                 if (response =="successful"){
-                    alert("User has been added successfully")
+                    alert("User Data has been saved successfully")
                     $("#myModal").modal('hide'); 
                     window.location.href="/";
                     

@@ -1,4 +1,5 @@
 FROM node:latest
+ENV MONGODB_URL=${MONGODB_URL}
 WORKDIR /app
 COPY package.json /app
 COPY . /app

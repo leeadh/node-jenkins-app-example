@@ -17,6 +17,7 @@ db.connect(() => {
 
     app.use(bodyParser.json()); // add body parser
     app.use(bodyParser.urlencoded({ extended: true }));
+    //console.log('Hello ' + process.env.MONGODB_URL)
     
     // get function 
     app.get('/', function(req, res) {
@@ -29,7 +30,7 @@ db.connect(() => {
     });
     
     // post functions
-    app.post('/adduser', function(req, res) {
+    app.post('/addUser', function(req, res) {
         var name=req.body.name
         var email=req.body.email
         var occupation=req.body.occupation
@@ -53,6 +54,30 @@ db.connect(() => {
                     }        
                 });
             }
+
+        });
+
+
+    });
+
+    // update user
+    app.post('/updateUser', function(req, res) {
+        var name=req.body.name
+        var email=req.body.email
+        var occupation=req.body.occupation
+        var username=req.body.username
+        console.log("test")
+        console.log(req.body)
+        console.log("end test")
+        db.get().collection('users').update({ email: email },{name :name, username:username, occupation:occupation, email:email},function(err,result){
+            if (err){
+                console.log("error")
+            }else{
+                console.log("successfully updated user")
+                res.send ("successful")
+
+            }
+            
 
         });
 
