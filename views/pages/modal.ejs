@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div class="container">
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header modal-header-primary">
+                <h4 class="modal-title">Add New Employee</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form id="user-form">
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                        
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="username" name="username" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="occupation">Occupation</label>
+                        <input type="occupation" name="occupation" class="form-control">
+                    </div>
+                
+                
+                
+                </div>
+            </form>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="submit" onclick="submitContactForm()">Submit</button>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+    function submitContactForm(){
+        $.ajax({
+            url: '/addUser',
+            type: 'POST',
+            data: $('#user-form').serialize(),
+            success: function(response){
+                if (response =="successful"){
+                    alert("User has been added successfully")
+                    $("#myModal").modal('hide'); 
+                    window.location.href="/";
+                    
+                }
+                
+            }
+        });       
+    }
+</script>
+
+</body>
+</html>
