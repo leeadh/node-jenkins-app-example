@@ -1,6 +1,6 @@
 This is a sample demonstration to integrate Jenkins with Cloud Automation Service (CAS) onto multiple clouds (AWS, GCP, Azure, Vpshere). Jenkins will be our CI pipeline tool which will help to build our application. For the scope of the example, we are going to simulate a code integration, deployment and testing from our development branch using  CAS with Jenkins and Dockers. 
 
-A further tutorial will be coming  to do blue/green deployments. 
+A further tutorial will be coming to do blue/green deployments, triggering the workflow to merge side branches into main brancges. 
 
 # Application Architecture Components # 
 
