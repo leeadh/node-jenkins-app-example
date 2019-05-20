@@ -10,5 +10,6 @@ docker build -t got:v5 . &&  docker run -d --network=mongo_db_default  --link=mo
 === To run the docker app and connection to mongo DB container===
 docker run -d --network=mongo_db_default  --link=mongodb:mongodb -e "MONGODB_URL=mongodb://mongodb/user" -p 4000:4000 e922a127d049
 docker run -d --network=mongo_db_default  --link=mongodb:mongodb -e MONGODB_URL='mongodb://xxxx:27017/user' -p 4000:4000 e922a127d049 
+docker run -d   -e MONGODB_URL='mongodb://xxxx:27017/user' -p 4000:4000 leexha/node_demo:18 
 
 MONGODB_URL=mongodb://127.0.0.1:27017/user node app.js

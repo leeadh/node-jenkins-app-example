@@ -13,7 +13,7 @@ pipeline {
 
         stage('Git clone'){
             steps{
-                git 'https://github.com/leeadh/node-jenkins-app-example.git'
+                git branch: 'development', url: 'https://github.com/leeadh/node-jenkins-app-example.git'
             }
             
         }
