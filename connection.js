@@ -6,6 +6,9 @@ let mongodb;
 
 function connect(callback){
     mongoClient.connect(mongoDbUrl, (err, db) => {
+        console.log("checking database")
+        console.log(err)
+        console.log(db)
         mongodb = db;
         callback();
     });
