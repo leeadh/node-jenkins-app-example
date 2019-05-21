@@ -1,6 +1,8 @@
 This is a sample demonstration to integrate Jenkins with Cloud Automation Service (CAS) onto multiple clouds (AWS, GCP, Azure, Vpshere). Jenkins will be our CI pipeline tool which will help to build our application. For the scope of the example, we are going to simulate a code integration, deployment and testing from our development branch using  CAS with Jenkins and Dockers. 
 
-A further tutorial will be coming to do blue/green deployments, triggering the workflow to merge side branches into main brancges. 
+A further tutorial will be coming to do blue/green deployments, triggering the workflow to merge side branches into main branches. 
+
+* Note: this assumes u have some basic knowledge of how to setup account in CAS and this tutorial will be focused solely on the integration point with Jenkins and setting it up for a code review before deploying in it our targeted infrastructure. 
 
 # Application Architecture Components # 
 
@@ -8,7 +10,7 @@ A further tutorial will be coming to do blue/green deployments, triggering the w
 2) The node JS application is communicating with several microservices API (CRUD) which are implemented in our app.js file
 3) The backend is running mongoDB. The initiation of the mongoDB will be done via docker compose. 
 4) Our node JS application and mongoDB will be containersised and deployed onto IaaS VMs. The building of the application, installing the necessary application dependencies, performing unit testing on the code and commiting the code into docker hub will be done via Jenkins. This will be our Continuous Integration (CI) portion
-5) For our Continuous Deployment (CD), we will be using Cloud Automation Service to implement the workflor and deploy the containerised workloads onto our cloud infrastructure
+5) For our Continuous Deployment (CD), we will be using Cloud Automation Service to implement the workflow and deploy the containerised workloads onto our cloud infrastructure
 
 An overview of the architecture can be view in the picture below
 
@@ -34,14 +36,31 @@ For creating the Jenkins pipeline file, you can refer to the file Jenkinsfile in
 
 
 
-# Setting up your CAS environment for infrastructure deployment# 
-Please refer to the CAS environment set up here. 
+# Setting up your CAS environment for infrastructure deployment # 
 
-First, we are going to create an infrastructure blueprint as shown in the image below. We are going to use cloud agnostic elements so that we can deploy onto any environment we choose. There will be modifications in this blueprint in the future to do specific AWS, Azure , GCP and Vsphere integrations. 
+
+We are going to create an infrastructure blueprint as shown in the image below. For this, we are going to use cloud-agnostic elements so that we can deploy onto any environment we choose. What is happening here is as follow:
+
+1) We are provisioning an IaaS instance where we will deploy our web application on a public network. The web application will pull from docker hub our latest container which we have built in our Jenkins step
+2) We will be provisioning a second IaaS instance on a private network which we deploy our MongoDB docker image with a persistent storage folder and with data already inserted into the database. The schema of MongoDB and the provisoning of data into our database can be found in mongo-init.js (under mongo_db folder). 
+
+```
+db.users.insert({name:"Jainish", email:"janish@yahoo.com", occupation:"dentist", username:"janish"})
+```
+
+3) The application container will communicate to the MongoDB container using the below where the mongoip is the private ip of the database. 
+
+```
+docker run -d   -e MONGODB_URL=mongodb://$mongoip:27017/user -p 4000:4000 ${input.input_docker_repo}:${input.input_docker_tag}
+```
+
+A sample screenshot of the blueprint is as below and you can drag and drop the cloud-agnostic elements inside our blueprint. 
 
 ![alt text](https://user-images.githubusercontent.com/15122358/58032944-27fff300-7b56-11e9-8b72-cfc6831e5ac0.png)
 
-You can refer to the blueprint file below. You can adjust the public key to whichever private key u require. 
+* Note: You can choose to drag and drop the elements inside the blueprint OR you can refer to the blueprint file below which you can import in when you create a new blueprint project. 
+
+The full blueprint is as shown below which you can import as a yaml file. 
 
 ```
 formatVersion: 1
@@ -159,16 +178,17 @@ resources:
         - name: '${resource.private.name}'
 ```
 
-# Setting up your CAS environment for workflow deployment# 
-You would now create the workflow for the CAS deployment as noted below. What is happening is as follows
+# Setting up your CAS environment for workflow deployment # 
 
-1) It would send an approving email to ask the requestor to approve the code change and allow jenkins to trigger the code testing and containerisation
-2) Once approved, Jenkins pipeline will then be triggered to do the code test and containerisation
-3) Once step 2 is done, then it will build out the infrastructure blueprint(see above Setting up your CAS environment for infrastructure deployment) and deploy the containerised application with mongoDB 
+You would now create the workflow for the CAS deployment as noted below. What is happening here is as follows:
+
+1) It would send an approving email to ask the requestor to approve the code change and allow jenkins to trigger the code testing and perform containerisation of our application
+2) Only when approved, Jenkins pipeline will then be triggered to do the code test and containerisation
+3) Once step 2 is done,  it will build out the infrastructure blueprint(see above Setting up your CAS environment for infrastructure deployment) and deploy the containerised application. 
 
 ![alt text](https://user-images.githubusercontent.com/15122358/58033783-b032c800-7b57-11e9-8224-a131c9217bbd.png)
 
-I have attached the code for the CAS deployment workflow as below
+I have attached the code for the CAS deployment workflow as below and you can import this worklow into your project. 
 ```
 ---
 project: test_project_adr
