@@ -4,7 +4,7 @@ This is a sample demonstration to integrate Jenkins with Cloud Automation Servic
 
 A further tutorial will be coming to do blue/green deployments, triggering the workflow to merge side branches into main branches. 
 
-**Note: this assumes u have some basic knowledge of how to setup account in CAS and this tutorial will be focused solely on the integration point with Jenkins and setting it up for a code review before deploying in it our targeted infrastructure. 
+**Note: this assumes u have some basic knowledge of how to setup account in CAS and this tutorial will be focused solely on the integration point with Jenkins and setting it up for a code review before deploying in it our targeted infrastructure.**
 
 # Application Architecture Components # 
 
