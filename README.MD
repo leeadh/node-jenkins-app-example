@@ -1,8 +1,10 @@
+# Cloud Automation Service with Jenkins integration # 
+
 This is a sample demonstration to integrate Jenkins with Cloud Automation Service (CAS) onto multiple clouds (AWS, GCP, Azure, Vpshere). Jenkins will be our CI pipeline tool which will help to build our application. For the scope of the example, we are going to simulate a code integration, deployment and testing from our development branch using  CAS with Jenkins and Dockers. 
 
 A further tutorial will be coming to do blue/green deployments, triggering the workflow to merge side branches into main branches. 
 
-* Note: this assumes u have some basic knowledge of how to setup account in CAS and this tutorial will be focused solely on the integration point with Jenkins and setting it up for a code review before deploying in it our targeted infrastructure. 
+**Note: this assumes u have some basic knowledge of how to setup account in CAS and this tutorial will be focused solely on the integration point with Jenkins and setting it up for a code review before deploying in it our targeted infrastructure. 
 
 # Application Architecture Components # 
 
@@ -35,7 +37,6 @@ For creating the Jenkins pipeline file, you can refer to the file Jenkinsfile in
 ![alt text](https://user-images.githubusercontent.com/15122358/58033644-6ba72c80-7b57-11e9-881b-bc21bd96dea9.png)
 
 
-
 # Setting up your CAS environment for infrastructure deployment # 
 
 
@@ -58,7 +59,7 @@ A sample screenshot of the blueprint is as below and you can drag and drop the c
 
 ![alt text](https://user-images.githubusercontent.com/15122358/58032944-27fff300-7b56-11e9-8b72-cfc6831e5ac0.png)
 
-* Note: You can choose to drag and drop the elements inside the blueprint OR you can refer to the blueprint file below which you can import in when you create a new blueprint project. 
+**Note: You can choose to drag and drop the elements inside the blueprint OR you can refer to the blueprint file below which you can import in when you create a new blueprint project. 
 
 The full blueprint is as shown below which you can import as a yaml file. 
 
@@ -189,6 +190,8 @@ You would now create the workflow for the CAS deployment as noted below. What is
 ![alt text](https://user-images.githubusercontent.com/15122358/58033783-b032c800-7b57-11e9-8224-a131c9217bbd.png)
 
 I have attached the code for the CAS deployment workflow as below and you can import this worklow into your project. 
+
+**There will be changes to this workflow deployment in the future.
 ```
 ---
 project: test_project_adr
