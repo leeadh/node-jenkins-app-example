@@ -12,7 +12,7 @@ spec:
         name: web
     spec:
       containers:
-      - image: leexha/node_demo:24
+      - image: leexha/node_demo:25
         env:
         - name: MONGODB_URL
           value: "mongodb://mongo.default.svc.cluster.local:27017/user"
