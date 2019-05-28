@@ -107,6 +107,7 @@ db.connect(() => {
     })
 
     app.use(instantMongoCrud(options)); // use for the instant Mongo CRUD 
+    app.use(express.static(__dirname));
 });
 
 
