@@ -12,7 +12,7 @@ spec:
         name: sps-app
     spec:
       containers:
-      - image: leexha/node_demo:26
+      - image: jur01-harbor.acepod.com/sps_project/spsapp:2
         env:
         - name: MONGODB_URL
           value: "mongodb://mongo.default.svc.cluster.local:27017/user"
