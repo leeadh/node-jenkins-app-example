@@ -13,8 +13,6 @@ spec:
     spec:
       containers:
       - image: jur01-harbor.acepod.com/sps_project/spsapp:2
-      imagePullSecrets:
-      - name: harbor 
         env:
         - name: MONGODB_URL
           value: "mongodb://mongo.default.svc.cluster.local:27017/user"
@@ -22,3 +20,5 @@ spec:
         ports:
         - containerPort: 4000
           name: sps-app
+      imagePullSecrets:
+      - name: harbor 
