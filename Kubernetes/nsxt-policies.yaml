@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: app-rules
+spec:
+  podSelector:
+    matchLabels:
+      name: sps
+  ingress:
+  - from:
+    ports:
+      - port: 4000
+        protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mongo-rules
+spec:
+  podSelector:
+    matchLabels:
+      name: mongo
+  ingress:
+  - from:
+      - podSelector:
+         matchLabels:
+           name: sps
+    ports:
+      - port: 27017
+        protocol: TCP
+---
