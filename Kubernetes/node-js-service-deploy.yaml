@@ -2,21 +2,21 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: sps-app
-  name: sps-app
+    name: sps
+  name: sps
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        name: sps-app
+        name: sps
     spec:
       containers:
       - image: leexha/demo:26
         env:
         - name: MONGODB_URL
           value: "mongodb://mongo.default.svc.cluster.local:27017/user"
-        name: sps-app
+        name: sps
         ports:
         - containerPort: 4000
-          name: sps-app
+          name: sps
