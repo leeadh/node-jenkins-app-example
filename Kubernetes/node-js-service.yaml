@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sps-app
+  name: sps
   labels:
-    name: sps-app
+    name: sps
 spec:
   ports:
     - port: 4000
