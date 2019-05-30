@@ -19,7 +19,7 @@ metadata:
   name: sps
 spec:
   rules:
-  - host: sps.pks-cl01-apps.acepod.com
+  - host: sps.corp.local
     http:
       paths:
       - backend:
