@@ -33,7 +33,7 @@ pipeline {
         stage ('Building image'){
             steps{
                 script{
-                    dockerImage = docker.build registry + ":production"
+                    dockerImage = docker.build registry + ":development"
                 }
             }
 
