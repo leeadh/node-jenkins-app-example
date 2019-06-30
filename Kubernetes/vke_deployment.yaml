@@ -1,0 +1,81 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongo
+  namespace: adrian-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mongo
+    spec:
+      containers:
+      - image: mongo:latest
+        name: mongo
+        ports:
+        - name: mongo
+          containerPort: 27017
+          hostPort: 27017
+        volumeMounts:
+          - name: mongo-initdb
+            mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: mongo-initdb
+        configMap:
+          name: mongo-initdb
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mongo
+  name: mongo
+  namespace: adrian-app
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    name: mongo
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: adrian-app
+  namespace: adrian-app
+spec:
+  selector:
+    matchLabels:
+      app: adrian-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: adrian-app
+    spec:
+      containers:
+      - image: leexha/node_demo:29
+        env:
+        - name: MONGODB_URL
+          value: "mongodb://mongo.adrian-app.svc.cluster.local:27017/user"
+        name: adrian-app
+        ports:
+        - containerPort: 4000
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: adrian-app
+  name: adrian-app
+  namespace: adrian-app
+spec:
+  type: LoadBalancer  # use ClusterIP as type here
+  ports:
+    - port: 4000
+  selector:
+    app: adrian-app
+
