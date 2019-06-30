@@ -6,15 +6,6 @@ let mongodb;
 
 let RECONNECT_INTERVAL = 3000
 function connect(callback){
-<<<<<<< HEAD
-    mongoClient.connect(mongoDbUrl, (err, db) => {
-        console.log("checking database")
-        console.log(err)
-        console.log(db)
-        mongodb = db;
-        callback();
-    });
-=======
       mongoClient.connect(mongoDbUrl, (err, db) => {
         if (err) {
           console.log("attempting to reconnect to " + mongoDbUrl)
@@ -25,7 +16,6 @@ function connect(callback){
           callback();
         }
       });
->>>>>>> development
 }
 
 function get(){
