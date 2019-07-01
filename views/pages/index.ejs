@@ -1,4 +1,4 @@
-            <!-- views/pages/index.ejs -->
+<!-- views/pages/index.ejs -->
 
             <!DOCTYPE html>
             <html lang="en">
@@ -86,10 +86,8 @@
                             alert("user has been successfully deleted")
                             window.location.href="/";
                         }
-
                     });
                 });
-
                 $('#usertable tbody').on('click', '.btn-edit', function () {
                     var data = table.row( $(this).parents('tr') ).data();
                     console.log(data);
@@ -99,14 +97,9 @@
                         $(e.currentTarget).find('input[name="email"]').val(data[2]);
                         $(e.currentTarget).find('input[name="occupation"]').val(data[3]);
                     });
-
                 });
-
                 
-
-
             } );
-
             </script>
             
             <!-- chats script-->
