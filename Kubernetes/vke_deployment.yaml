@@ -56,7 +56,7 @@ spec:
         app: adrian-app
     spec:
       containers:
-      - image: leexha/node_demo:29
+      - image: leexha/node_demo:new
         env:
         - name: MONGODB_URL
           value: "mongodb://mongo.adrian-app.svc.cluster.local:27017/user"
