@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "install": "npm-git-install",
     "test": "jasmine-node test",
     "start": "node app.js"
   },
