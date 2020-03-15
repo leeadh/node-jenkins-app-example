@@ -15,7 +15,7 @@ spec:
         run: sample
     spec:
       containers:
-      - image: leexha/sampleadd:latest
+      - image: leexha/sampleadd:2
         name: sample
 
 ---
