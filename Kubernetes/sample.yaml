@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: sample
+  name: sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: sample
+  template:
+    metadata:
+      labels:
+        run: sample
+    spec:
+      containers:
+      - image: leexha/sampleadd:latest
+        name: sample
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: sample
+  name: sample
+  namespace: default
+spec:
+  ports:
+  - nodePort: 32311
+    port: 4000
+    protocol: TCP
+    targetPort: 4000
+  selector:
+    run: sample
+  type: NodePort
+status:
+  loadBalancer: {}
