@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
       - image: leexha/sampleadd:2
+        imagePullPolicy: Always
         name: sample
 
 ---
