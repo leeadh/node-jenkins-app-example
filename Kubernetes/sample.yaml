@@ -15,7 +15,7 @@ spec:
         run: sample
     spec:
       containers:
-      - image: leexha/sampleadd:development
+      - image: leexha/sampleadd:latest
         imagePullPolicy: Always
         name: sample
 
